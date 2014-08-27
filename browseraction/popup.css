@@ -1,0 +1,13 @@
+div {
+    position: relative;
+}
+
+div h1 {
+    text-align: left;
+}
+
+div button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
