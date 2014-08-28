@@ -27,12 +27,25 @@ function getSelectedText() {
 	    selection.modify('move', 'backward', 'word');
 	    selection.modify('extend', 'forward', 'word');
 	    selectedText = selection.toString();
+		selectedText = fixWord(selectedText);
 	    selection.modify('move', 'forward', 'character');
 	}
 	else {
 	    selectedText = selection.toString();
 	}
 	return selectedText;
+}
+
+function fixWord(selectedText) {
+    var punctuation = "\n\t `~!@#$%^&*()-_=+[{]}\|;:'\",<.>/?";
+    for(var i=0;i<selectedText.length;i++) {
+        if(punctuation.indexOf(selectedText.charAt(selectedText.length-1)) > -1) {
+            selectedText=selectedText.slice(0, - 1);
+        } else {
+            break;
+        }
+    }
+   return(selectedText);
 }
 
 $(window).keydown(function(e) {
