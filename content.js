@@ -1,21 +1,38 @@
-var googleKey = 71;	//default to g
-var SOKey = 83;		//edfault to x
-var WikiKey = 87;	//default to c
+function searchEngine(key, URL) {
+	this._key = key;
+	this._select = false;
+	this._URL = URL;
+}
 
-var googleSelect = false;
-var SOSelect = false;
-var WikiSelect = false;
+searchEngine.prototype = {
+	getKey: function() { return this._key; },
+	getSelect: function() { return this._select; },
+	setSelect: function (select) {this._select = select;},
+	search: function(searchItem) {
+		var words = searchItem.split(' ');
+		searchURL=this._URL;
+		for(var i=0;i<words.length;i++) {
+			searchURL+=words[i]+"+";
+		}
+		window.open(searchURL);
+	}
+};
+var searchEngines = new Array();
+
+var Google = new searchEngine(71, "http://www.google.ca/search?q=");
+var SO = new searchEngine(83, "http://stackoverflow.com/search?q=");
+var Wiki = new searchEngine(87, "http://en.wikipedia.org/w/index.php?search=");
+
+searchEngines.push(Google);
+searchEngines.push(SO);
+searchEngines.push(Wiki);
 
 $("body").click(function(e) {
-	if (googleSelect) {
-		googleSelect = false;
-		go2Google(getSelectedText());
-	} else if (SOSelect) {
-		SOSelect = false;
-		go2SO(getSelectedText());
-	} else if (WikiSelect) {
-		WikiSelect = false;
-		go2Wiki(getSelectedText());
+	for(var i=0;i<searchEngines.length;i++) {
+		if(searchEngines[i].getSelect()) {
+			searchEngines[i].setSelect(false);
+			searchEngines[i].search(getSelectedText());
+		}
 	}
 });
 
@@ -49,46 +66,15 @@ function fixWord(selectedText) {
 }
 
 $(window).keydown(function(e) {
-	if (e.which == googleKey) {
-		googleSelect = true;
-	} else if (e.which == SOKey) {
-		SOSelect = true;
-	} else if (e.which == WikiKey) {
-		WikiSelect = true;
+	for(var i=0;i<searchEngines.length;i++) {
+		if(e.which==searchEngines[i].getKey()) {
+			searchEngines[i].setSelect(true);
+		}
 	}
 }).keyup(function(e) {
-	if (e.which == googleKey) { 
-		googleSelect = false;
-	} else if (e.which == SOKey) {
-		SOSelect = false;
-	} else if (e.which == WikiKey) {
-		WikiSelect = false;
+	for(var i=0;i<searchEngines.length;i++) {
+		if(e.which==searchEngines[i].getKey()) {
+			searchEngines[i].setSelect(false);
+		}
 	}
 });
-
-function go2Google(searchItem) {
-	var words = searchItem.split(' ');
-	searchURL = "http://www.google.ca/search?q=";
-	for(var i=0;i<words.length;i++) {
-		searchURL+=words[i]+"+";
-	}
-	window.open(searchURL);
-}
-
-function go2SO(searchItem) {
-	var words = searchItem.split(' ');
-	searchURL = "http://stackoverflow.com/search?q=";
-	for(var i=0;i<words.length;i++) {
-		searchURL+=words[i]+"+";
-	}
-	window.open(searchURL);
-}
-
-function go2Wiki(searchItem) {
-	var words = searchItem.split(' ');
-	searchURL = "http://en.wikipedia.org/w/index.php?search=";
-	for(var i=0;i<words.length;i++) {
-		searchURL+=words[i]+"+";
-	}
-	window.open(searchURL);
-}

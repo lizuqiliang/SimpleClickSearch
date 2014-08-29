@@ -1,8 +1,10 @@
 {
-  "name": "thisIDEAsucks",
-  "version": "0.0.1",
+  "name": "SimpleClickSearch",
+  "version": "0.5.0",
   "manifest_version": 2,
-  "description" : "TODO",
+  "description" : "Google Chrome Extension for easy searches with popular search engines.\n
+  Click or highlight any form of text to perform a search with popular search engines! Currently supports Wikipedia, Google, and Stack Overflow.\n
+  Hold G while clicking to use Google. Hold W while clicking to use Wikipedia. Hold S while clicking to use Stack Overflow.",
   "permissions": [
       "storage"
   ],
@@ -12,7 +14,7 @@
       "19": "icons/19x19.png",
       "38": "icons/38x38.png"
     },
-    "default_title": "thisIDEAsucks",
+    "default_title": "SimpleClickSearch",
     "default_popup": "browseraction/popup.html"
   },
 
