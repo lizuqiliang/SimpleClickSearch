@@ -1,13 +1,17 @@
+body {
+    background-color: #b0c4de;
+}
+
 div {
-    position: relative;
+    background-color: #ffb6c1;
+    width: 200px;
+    height: 400px;
+    padding: 10px;
+    border: 10px groove green;
+    margin: 10px;
 }
 
-div h1 {
-    text-align: left;
-}
-
-div button {
-    position: absolute;
-    right: 10px;
-    top: 10px;
+select {
+    position: fixed;
+    right: 40px;
 }

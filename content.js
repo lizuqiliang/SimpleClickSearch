@@ -17,25 +17,32 @@ searchEngine.prototype = {
 		window.open(searchURL);
 	}
 };
-var searchEngines = new Array();
 
-var Google = new searchEngine(71, "http://www.google.ca/search?q=");
+var activeSearchEngines = new Array();
+
+var Google = new searchEngine(71, "http://www.google.com/search?q=");
 var SO = new searchEngine(83, "http://stackoverflow.com/search?q=");
 var Wiki = new searchEngine(87, "http://en.wikipedia.org/w/index.php?search=");
+var Bing = new searchEngine(66,"http://www.bing.com/search?q=");
+var Yahoo = new searchEngine(89, "https://search.yahoo.com/search;_ylt=ApVdv9lTmoX7O37NL_djGSct17V_?p=");
+var Baidu = new searchEngine(68, "http://www.baidu.com/s?ie=utf-8&f=8&tn=baidu&wd=");
 
-searchEngines.push(Google);
-searchEngines.push(SO);
-searchEngines.push(Wiki);
+activeSearchEngines.push(Google);
+activeSearchEngines.push(Wiki);
+activeSearchEngines.push(SO);
+activeSearchEngines.push(Bing);
+activeSearchEngines.push(Yahoo);
+activeSearchEngines.push(Baidu);
 
 $("body").click(function(e) {
-	for(var i=0;i<searchEngines.length;i++) {
-		if(searchEngines[i].getSelect()) {
-			searchEngines[i].setSelect(false);
-			searchEngines[i].search(getSelectedText());
+	for(var i=0;i<activeSearchEngines.length;i++) {
+		if(activeSearchEngines[i].getSelect()) {
+			activeSearchEngines[i].setSelect(false);
+			activeSearchEngines[i].search(getSelectedText());
 		}
 	}
 });
-
+	
 function getSelectedText() {
 	var selectedText = '';
 	var selection = window.getSelection();
@@ -44,8 +51,8 @@ function getSelectedText() {
 	    selection.modify('move', 'backward', 'word');
 	    selection.modify('extend', 'forward', 'word');
 	    selectedText = selection.toString();
-		selectedText = fixWord(selectedText);
-	    selection.modify('move', 'forward', 'character');
+	    selectedText = fixWord(selectedText);
+	    selection.empty();
 	}
 	else {
 	    selectedText = selection.toString();
@@ -66,15 +73,15 @@ function fixWord(selectedText) {
 }
 
 $(window).keydown(function(e) {
-	for(var i=0;i<searchEngines.length;i++) {
-		if(e.which==searchEngines[i].getKey()) {
-			searchEngines[i].setSelect(true);
+	for(var i=0;i<activeSearchEngines.length;i++) {
+		if(e.which==activeSearchEngines[i].getKey()) {
+			activeSearchEngines[i].setSelect(true);
 		}
 	}
 }).keyup(function(e) {
-	for(var i=0;i<searchEngines.length;i++) {
-		if(e.which==searchEngines[i].getKey()) {
-			searchEngines[i].setSelect(false);
+	for(var i=0;i<activeSearchEngines.length;i++) {
+		if(e.which==activeSearchEngines[i].getKey()) {
+			activeSearchEngines[i].setSelect(false);
 		}
 	}
 });
