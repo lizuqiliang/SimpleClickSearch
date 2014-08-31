@@ -1,33 +1,35 @@
-var alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+var lists = [
+	"ABCDEFG",
+	"HIJKLMN",
+	"OPQRST",
+	"UVWXYZ"];
+
 $(document).ready(function() {
-    var Google = document.getElementById("Google");
-    var Wiki = document.getElementById("Wiki");
-    var SO = document.getElementById("SO");
-    var Bing = document.getElementById("Bing");
-    var Yahoo = document.getElementById("Yahoo");
-    var Baidu = document.getElementById("Baidu");
-    selectGenerator(Google);
-    selectGenerator(Wiki);
-    selectGenerator(SO);
-    selectGenerator(Bing);
-    selectGenerator(Yahoo);
-    selectGenerator(Baidu);
+	menuGenerator();
 });
 
-function selectGenerator(selectId) {
-    optionGenerator(selectId,"SHIFT");
-    optionGenerator(selectId,"CTRL");
-    optionGenerator(selectId,"ALT");
-    for (var i = 0; i < alpha.length ; i++) { 
-        var optText = alpha.charAt(i);
-        optionGenerator(selectId,optText);
+function menuGenerator() {
+	listGenerator(0,"A~G");
+	listGenerator(1,"H~N");
+	listGenerator(2,"O~T");
+	listGenerator(3,"U~Z");
+    for (var i = 0; i < lists.length; i++) { 
+        listItemsGenerator(i.toString(), lists[i]);
     };
 }
 
-function optionGenerator(selectId,optText) {
-    var optionInstance = document.createElement("option");
-    optionInstance.text = optText;
-    selectId.options.add(optionInstance);
+function listGenerator(num, text) {
+	var str = "<li class='has-sub '>"
+	$(".create").append(str.concat(text).concat("<ul class='List").concat(num.toString()).concat("'></ul></li>"));
+}
+
+function listItemsGenerator(num, list) {
+	var selector = ".List";
+	selector=selector.concat(num);
+    var li = "<li onclick='set()'>";;
+	for (var i = 0; i < list.length; i++) {
+		$(selector).append(li.concat(list.charAt(i)).concat("</li>"));
+    };
 };
 
 /*
