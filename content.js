@@ -24,20 +24,25 @@ var Google = new searchEngine(71, "http://www.google.com/search?q=");
 var SO = new searchEngine(83, "http://stackoverflow.com/search?q=");
 var Wiki = new searchEngine(87, "http://en.wikipedia.org/w/index.php?search=");
 var Bing = new searchEngine(66,"http://www.bing.com/search?q=");
-var Yahoo = new searchEngine(89, "https://search.yahoo.com/search;_ylt=ApVdv9lTmoX7O37NL_djGSct17V_?p=");
+var Youtube = new searchEngine(89, "https://www.youtube.com/results?search_query=");
 var Baidu = new searchEngine(68, "http://www.baidu.com/s?ie=utf-8&f=8&tn=baidu&wd=");
+var Yahoo = new searchEngine(72, "https://search.yahoo.com/search;_ylt=ApVdv9lTmoX7O37NL_djGSct17V_?p=")
 
 activeSearchEngines.push(Google);
+activeSearchEngines.push(Youtube);
 activeSearchEngines.push(Wiki);
 activeSearchEngines.push(SO);
+activeSearchEngines.push(Baidu);
 activeSearchEngines.push(Bing);
 activeSearchEngines.push(Yahoo);
-activeSearchEngines.push(Baidu);
 
 $("body").click(function(e) {
-	var selectedText = getSelectedText();
+	var selectedText;
 	for(var i=0;i<activeSearchEngines.length;i++) {
 		if(activeSearchEngines[i].getSelect()) {
+			if(!selectedText) {
+				selectedText=getSelectedText();
+			}
 			activeSearchEngines[i].setSelect(false);
 			activeSearchEngines[i].search(selectedText);
 		}
