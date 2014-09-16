@@ -19,19 +19,36 @@ function AtoZMenuGenerator() {
 }
 
 function AtoZListGenerator(num, text) {
-	var str = "<li class='has-sub '>"
-	$(".createAtoZ").append(str.concat(text).concat("<ul class='List").concat(num.toString()).concat("'></ul></li>"));
+	var str = "<li>"
+	$(".createAtoZ").append(str.concat(text).concat("<ul class='list").concat(num.toString()).concat("'></ul></li>"));
 }
 
 function AtoZItemsGenerator(num, list) {
-	var selector = ".List";
+	var selector = ".list";
 	selector=selector.concat(num);
-    var li = "<li onclick='set()'>";
+    var li = "<li class='click'>";
 	for (var i = 0; i < list.length; i++) {
 		$(selector).append(li.concat(list.charAt(i)).concat("</li>"));
     };
-};
+}
+$(function(){
+	$( ".click" ).click(function() {
+		var key = $(this).text();
+		var listStr=$(this).parent().parent().parent().parent().text();
+		var searchEngine = searchEngineFind(listStr);
+		$(".output").text("\"" + key + "\" key set for " + searchEngine + "!");
+	});
+});
 
+function searchEngineFind(str) {
+    var i;
+    for(i = 0; i < str.length; i++) {
+        if(str[i] == '\n') {
+            break;
+        }
+    }
+    return str.substring(0,i);
+}
 /*
 window.onload = function() {
     document.getElementById("button").onclick = function() {

@@ -1,4 +1,4 @@
-function searchEngine(key, URL) {
+	function searchEngine(key, URL) {
 	this._key = key;
 	this._select = false;
 	this._URL = URL;
@@ -35,10 +35,11 @@ activeSearchEngines.push(Yahoo);
 activeSearchEngines.push(Baidu);
 
 $("body").click(function(e) {
+	var selectedText = getSelectedText();
 	for(var i=0;i<activeSearchEngines.length;i++) {
 		if(activeSearchEngines[i].getSelect()) {
 			activeSearchEngines[i].setSelect(false);
-			activeSearchEngines[i].search(getSelectedText());
+			activeSearchEngines[i].search(selectedText);
 		}
 	}
 });

@@ -1,35 +1,113 @@
 @charset "UTF-8";
-@import url(http://fonts.googleapis.com/css?family=Oxygen+Mono);
-#cssmenu {padding: 0; margin: 0; border: 0;}
-#cssmenu ul, #cssmenu li {list-style: none; margin: 0; padding: 0;}
-#cssmenu ul {position: relative; z-index: 597; }
-#cssmenu ul li { float: left; min-height: 1px; vertical-align: middle;}
-#cssmenu ul li.hover,
-#cssmenu ul li:hover {position: relative; z-index: 599; cursor: default;}
-#cssmenu ul ul {visibility: hidden; position: absolute; top: 100%; left: 0; z-index: 598; width: 100%;}
-#cssmenu ul ul li {float: none;}
-#cssmenu ul ul ul {top: 0; left: auto; right: -99.5%; }
-#cssmenu ul li:hover > ul { visibility: visible;}
-#cssmenu ul ul {bottom: 0; left: 0;}
-#cssmenu ul ul {margin-top: 0; }
-#cssmenu ul ul li {font-weight: normal;}
-#cssmenu a { display: block; line-height: 1em; text-decoration: none; }
-
-
 
 body {
-    background-color: #ffb6c1;
-    width: 200px;
-    height: 400px;
+    background-color: #708090;
+	width: 210px;
+	margin: 10px;
+    height: 520px;
     padding: 10px;
     border: 10px groove green;
-    margin: 10px;
 }
 
-div {
+body p.output {
+	position: absolute;
+    top: 510px;
+    left: 30px;
+	font-family:tahoma;
+    font-size:14px;
+	font-weight: bold;
 }
 
-select {
-    position: fixed;
-    right: 40px;
+nav {
+    width:110px;
+    margin:10px;
+}
+
+nav ul {
+    /* Removes bullet points */
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+nav ul li {
+    /* Any child positioned absolutely will be positioned relative to this */
+	background-color: #696969;
+    position:relative;
+	border-top:1px solid #e9e9e9;
+	border-left:1px solid #e9e9e9;
+}
+
+nav *{
+    color:#e8e8e8;
+    padding:8px 0px;
+    /* Fill all available horizontal space */
+    display:block;
+    /* Remove underline */
+    text-decoration:none;
+    /* 
+    New CSS3 animations:
+    apply transition to background property, taking 1s to change it 
+    */
+    transition:background 1s;
+    -moz-transition:background 1s;
+    -webkit-transition:background 1s;
+    -o-transition:background 1s;
+    font-family:tahoma;
+    font-size:11px;
+    text-transform:uppercase;
+    padding-left:5px;
+}
+
+nav *:hover {
+    /* 
+    RGBA background for transparancy: 
+    last number(0.05) is the transparency 
+    */
+    background: #808080;
+    color:#fff;
+}
+
+nav ul li:hover ul {
+    /* When list item is hovered, display UL nested within. */
+    display:block;
+}
+
+nav ul li:hover ul ul{
+    display:none;
+}
+
+nav ul ul {
+    /* Remove element from document flow */
+    position:absolute;
+    /* Position relative to its parent &lt;li&gt; */
+    left:109px;
+    top:-1px;
+    display:none;
+}
+
+nav ul ul li {
+    width:27px;
+    background:#696969;
+    border-top:1px solid #e9e9e9;
+	border-left:1px solid #e9e9e9;
+}
+
+nav ul ul li:hover ul{
+    /* When list item is hovered, display UL nested within. */
+    display:block;
+}
+
+nav ul ul ul{
+    /* Remove element from document flow */
+    position:absolute;
+    /* Position relative to its parent &lt;li&gt; */
+    left:32px;
+    top:-1px;
+    display:none;
+}
+
+nav ul ul ul li {
+    width:27px;
+    background:#696969;
 }
