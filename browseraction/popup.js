@@ -31,16 +31,19 @@ function AtoZItemsGenerator(num, list) {
 		$(selector).append(li.concat(list.charAt(i)).concat("</li>"));
     };
 }
+
 $(function(){
 	$( ".click" ).click(function() {
 		var key = $(this).text();
 		var listStr=$(this).parent().parent().parent().parent().text();
-		var searchEngine = searchEngineFind(listStr);
+		var searchEngine = searchEngineFilter(listStr);
+		saveChanges(searchEngine, key);
 		$(".output").text("\"" + key + "\" key set for " + searchEngine + "!");
+		$(".notice").text("Please refresh browser!");
 	});
 });
 
-function searchEngineFind(str) {
+function searchEngineFilter(str) {
     var i;
     for(i = 0; i < str.length; i++) {
         if(str[i] == '\n') {
@@ -49,27 +52,11 @@ function searchEngineFind(str) {
     }
     return str.substring(0,i);
 }
-/*
-window.onload = function() {
-    document.getElementById("button").onclick = function() {
-        chrome.extension.sendMessage({
-            saveChanges();
-        });
-    }
-}
 
-function saveChanges() {
-    // Get a value saved in a form.
-    var theValue = textarea.value;
-    // Check that there's some code there.
-    if (!theValue) {
-        message('Error: No value specified');
-        return;
-    }
-    // Save it using the Chrome extension storage API.
-    chrome.storage.sync.set({'value': theValue}, function() {
-        // Notify that we saved.
+function saveChanges(searchEngine, key) {
+	var setting= {};
+	setting[searchEngine]=key;
+    chrome.storage.local.set(setting, function() {
         message('Settings saved');
     });
 }
-*/

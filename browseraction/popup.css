@@ -9,13 +9,17 @@ body {
     border: 10px groove green;
 }
 
-body p.output {
+body p.output, p.notice{
 	position: absolute;
-    top: 510px;
+    top: 500px;
     left: 30px;
 	font-family:tahoma;
     font-size:14px;
 	font-weight: bold;
+}
+
+body p.notice{
+    top: 520px;
 }
 
 nav {

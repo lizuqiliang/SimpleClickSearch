@@ -1,13 +1,17 @@
-	function searchEngine(key, URL) {
-	this._key = key;
+function searchEngine(defaultKey ,name, URL) {
+	this._name = name;
+	this._key = defaultKey;
 	this._select = false;
 	this._URL = URL;
+	this._active = true;
 }
 
 searchEngine.prototype = {
+	getName: function() { return this._name; },
 	getKey: function() { return this._key; },
+	setKey: function(key) { this._key = key; },
 	getSelect: function() { return this._select; },
-	setSelect: function (select) {this._select = select;},
+	setSelect: function (select) {this._select = select; },
 	search: function(searchItem) {
 		var words = searchItem.split(' ');
 		searchURL=this._URL;
@@ -20,13 +24,14 @@ searchEngine.prototype = {
 
 var activeSearchEngines = new Array();
 
-var Google = new searchEngine(71, "http://www.google.com/search?q=");
-var SO = new searchEngine(83, "http://stackoverflow.com/search?q=");
-var Wiki = new searchEngine(87, "http://en.wikipedia.org/w/index.php?search=");
-var Bing = new searchEngine(66,"http://www.bing.com/search?q=");
-var Youtube = new searchEngine(89, "https://www.youtube.com/results?search_query=");
-var Baidu = new searchEngine(68, "http://www.baidu.com/s?ie=utf-8&f=8&tn=baidu&wd=");
-var Yahoo = new searchEngine(72, "https://search.yahoo.com/search;_ylt=ApVdv9lTmoX7O37NL_djGSct17V_?p=")
+var Google = new searchEngine(71, "Google","http://www.google.com/search?q=");
+var SO = new searchEngine(83, "Stack Overflow", "http://stackoverflow.com/search?q=");
+var Wiki = new searchEngine(87, "Wikipedia", "http://en.wikipedia.org/w/index.php?search=");
+var Bing = new searchEngine(66, "Bing", "http://www.bing.com/search?q=");
+var Youtube = new searchEngine(89, "Youtube", "https://www.youtube.com/results?search_query=");
+var Baidu = new searchEngine(68, "Baidu", "http://www.baidu.com/s?ie=utf-8&f=8&tn=baidu&wd=");
+var Yahoo = new searchEngine(72, "Yahoo", "https://search.yahoo.com/search;_ylt=ApVdv9lTmoX7O37NL_djGSct17V_?p=");
+var Custom = new searchEngine(0, "Custom", "");
 
 activeSearchEngines.push(Google);
 activeSearchEngines.push(Youtube);
@@ -35,6 +40,16 @@ activeSearchEngines.push(SO);
 activeSearchEngines.push(Baidu);
 activeSearchEngines.push(Bing);
 activeSearchEngines.push(Yahoo);
+activeSearchEngines.push(Custom);
+
+chrome.storage.local.get(null, function(result) {
+	for(var i=0;i<7;i++) {
+		if(chrome.runtime.lastError) {
+			activeSearchEngines[i].setKey(activeSearchEngines[i].getKey());
+		}
+		activeSearchEngines[i].setKey(result[activeSearchEngines[i].getName()].charCodeAt(0));
+	}
+});
 
 $("body").click(function(e) {
 	var selectedText;
