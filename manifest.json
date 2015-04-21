@@ -26,7 +26,7 @@
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*", "<all_urls>"],
-      "js": ["jquery-1.11.1.min.js","content.js"],
+      "js": ["js/jquery-1.11.2.min.js","js/content.js"],
       "all_frames": true
     }
   ]
