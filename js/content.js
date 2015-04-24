@@ -43,11 +43,11 @@ activeSearchEngines.push(Yahoo);
 activeSearchEngines.push(Custom);
 
 chrome.storage.local.get(null, function(result) {
-	for(var i=0;i<7;i++) {
-		if(chrome.runtime.lastError) {
-			activeSearchEngines[i].setKey(activeSearchEngines[i].getKey());
+	if(!chrome.runtime.lastError) {
+		for(var i=0;i<7;i++) {
+			if(result[activeSearchEngines[i].getName()] !== null)
+				activeSearchEngines[i].setKey(result[activeSearchEngines[i].getName()].charCodeAt(0));
 		}
-		activeSearchEngines[i].setKey(result[activeSearchEngines[i].getName()].charCodeAt(0));
 	}
 });
 
