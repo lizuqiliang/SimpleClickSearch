@@ -1,16 +1,14 @@
 SimpleClickSearch
 =================
 
-Google Chrome extension for simple plain text searching with popular search engines.
-
-Hold shortcut key + click/highlight the plain text to conduct search.
-
-Shortcut key is customizable through the extension menu.
+SimpleClickSearch is a Google Chrome extension for simple text searching via popular search engines.
 
 ##Instructions
 * Download source code
 * Unzip and load as an unpacked extension
 ![1](https://cloud.githubusercontent.com/assets/5790854/7221506/66082836-e6bb-11e4-8534-3cc708a5e26d.png)
+
+Hold a hotkey and click on any plain text to search the selected word with the corresponding search engine. Hold a hotkey and highlight a group of plain text to search all the highlighted text.
 
 ###Default Hotkey Settings:
 
@@ -23,3 +21,5 @@ Shortcut key is customizable through the extension menu.
 * H: Yahoo
 
 Configure hotkey settings through the SimpleClickSearch menu on the top right of your browser.
+
+Note: Some textboxes will automatically focus when a key is held. This behaviour may interfere with SimpleClickSearch.
