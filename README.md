@@ -1,7 +1,7 @@
 SimpleClickSearch
 =================
 
-SimpleClickSearch is a Google Chrome extension for simple text searching via popular search engines.
+SimpleClickSearch is a Google Chrome extension for simple text search via popular search engines.
 
 ##Instructions
 * Download source code
