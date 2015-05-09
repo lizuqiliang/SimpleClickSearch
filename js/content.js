@@ -52,14 +52,16 @@ chrome.storage.local.get(null, function(result) {
 });
 
 $("body").click(function(e) {
-	var selectedText;
-	for(var i=0;i<activeSearchEngines.length;i++) {
-		if(activeSearchEngines[i].getSelect()) {
-			if(!selectedText) {
-				selectedText=getSelectedText();
+	if(e.target.nodeName !== "INPUT") {
+		var selectedText;
+		for(var i=0;i<activeSearchEngines.length;i++) {
+			if(activeSearchEngines[i].getSelect()) {
+				if(!selectedText) {
+					selectedText=getSelectedText();
+				}
+				activeSearchEngines[i].setSelect(false);
+				activeSearchEngines[i].search(selectedText);
 			}
-			activeSearchEngines[i].setSelect(false);
-			activeSearchEngines[i].search(selectedText);
 		}
 	}
 });
