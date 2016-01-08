@@ -1,7 +1,7 @@
-SimpleClickSearch
+Simple. Click. Search.
 =================
 ![scs](https://cloud.githubusercontent.com/assets/5790854/11773940/4298069c-a1fe-11e5-8649-cc55c4c06cad.png)
-SimpleClickSearch is a Google Chrome extension for simple text search via popular search engines.
+Simple.Click.Search. is a Google Chrome extension for simple text search via popular search engines.
 
 ##Instructions
 * Download zip
@@ -20,6 +20,6 @@ Hold a hotkey and click on any plain text to search the selected word with the c
 * D: Baidu
 * H: Yahoo
 
-Configure hotkey settings through the SimpleClickSearch menu on the top right of your browser.
+Configure hotkey settings through the Simple.Click.Search. menu on the top right of your browser.
 
 Note: Some textboxes will automatically focus when a key is held. This behaviour may interfere with SimpleClickSearch.
