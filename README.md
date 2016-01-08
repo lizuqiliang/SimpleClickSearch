@@ -1,4 +1,4 @@
-Simple. Click. Search.
+Simple.Click.Search.
 =================
 ![scs](https://cloud.githubusercontent.com/assets/5790854/11773940/4298069c-a1fe-11e5-8649-cc55c4c06cad.png)
 Simple.Click.Search. is a Google Chrome extension for simple text search via popular search engines.
